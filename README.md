@@ -52,7 +52,7 @@ Never commit real credentials. The AI Gateway key must remain server-side and mu
 4. Create an initial administrator through a controlled server-side process; do not let a public sign-up form choose its own role.
 5. Configure email confirmation, password policy, backups, and production access controls before real use.
 
-The schema includes profiles, departments, doctors, doctor availability, and appointments. Row-level security is enabled. A PostgreSQL exclusion constraint prevents overlapping non-cancelled appointments for the same doctor, including concurrent booking attempts.
+The schema includes profiles, departments, doctors, doctor availability, and appointments. Row-level security is enabled. The `book_appointment` database function validates doctor status, configured availability, and consultation duration before creating a booking. A PostgreSQL exclusion constraint is the final concurrency guard against overlapping non-cancelled appointments for the same doctor. Direct client inserts are revoked.
 
 ## Build checks
 
