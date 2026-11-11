@@ -32,13 +32,13 @@ npm run dev
 
 Open http://localhost:3000.
 
-The dashboard preview can be explored without credentials. Supabase and AI features remain disabled until their environment variables and server-side integrations are configured.
+The dashboard preview can be explored without credentials. A staff sign-in screen is available at `/login`; Supabase sign-in and session refresh become active after the project URL and publishable key are configured. The dashboard itself remains a demo preview until the protected staff workspace and live data workflows are completed.
 
 ## Environment variables
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
 AI_GATEWAY_API_KEY=your_server_side_ai_gateway_key
 ```
 
@@ -66,7 +66,7 @@ Run these checks locally after installing dependencies. The GitHub connector can
 
 ## Next implementation milestones
 
-1. Supabase SSR authentication and role-aware route protection.
+1. Complete role-aware route protection and authenticated staff workspace.
 2. Persisted patient, doctor, department, availability, and appointment workflows.
 3. Atomic server-side booking validation and cancellation/rescheduling.
 4. AI assistant using tool calls to search departments/doctors/available slots; the AI may suggest but must never invent availability or write bookings outside validated backend functions.
