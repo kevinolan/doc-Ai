@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
   const router = useRouter();
-  const params = useSearchParams();
+  const [callbackError, setCallbackError] = useState(false);
+  useEffect(() => { setCallbackError(new URLSearchParams(window.location.search).has("error")); }, []);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -32,7 +33,6 @@ export default function LoginPage() {
     }
   }
 
-  const callbackError = params.get("error");
   return (
     <main className="auth-page">
       <section className="auth-card">
