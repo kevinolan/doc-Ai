@@ -1,6 +1,7 @@
  "use client";
 
 import { useMemo, useState } from "react";
+import type { FormEvent, ReactNode } from "react";
 import {
   Activity, ArrowDownRight, ArrowUpRight, Bell, Bot, Building2, CalendarCheck,
   CalendarDays, Check, ChevronDown, CircleAlert, Clock3, HeartPulse, LayoutDashboard,
@@ -63,7 +64,7 @@ export default function Home() {
     [item.patient, item.doctor, item.department, item.id].some((value) => value.toLowerCase().includes(search.toLowerCase()))
   ), [appointments, search]);
 
-  function bookAppointment(event: React.FormEvent<HTMLFormElement>) {
+  function bookAppointment(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!patient.trim()) return;
     const initials = patient.trim().split(/\s+/).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
@@ -79,7 +80,7 @@ export default function Home() {
     setActiveNav("Appointments");
   }
 
-  function sendChat(event: React.FormEvent<HTMLFormElement>) {
+  function sendChat(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const prompt = chatInput.trim();
     if (!prompt) return;
@@ -187,7 +188,7 @@ export default function Home() {
   );
 }
 
-function StatCard({ label, value, change, icon, tone, foot, down = false }: { label: string; value: string; change: string; icon: React.ReactNode; tone: string; foot: string; down?: boolean }) {
+function StatCard({ label, value, change, icon, tone, foot, down = false }: { label: string; value: string; change: string; icon: ReactNode; tone: string; foot: string; down?: boolean }) {
   return <div className="stat-card"><div className="stat-top"><span>{label}</span><div className={`stat-icon ${tone}`}>{icon}</div></div><div className="stat-value">{value}</div><div className="stat-foot"><span className={down ? "change-good" : "change-up"}>{down ? <ArrowDownRight size={13} /> : <ArrowUpRight size={13} />}{change}</span><span>{foot}</span></div></div>;
 }
 
