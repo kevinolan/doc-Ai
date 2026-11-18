@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Carely
 
-## Getting Started
+Carely is a Next.js outpatient appointment web app. It is currently a
+TypeScript web application, not a React Native project or a native Android
+project.
 
-First, run the development server:
+## Development
+
+Install dependencies and run the checks:
+
+```bash
+npm ci
+npm run data:validate
+npm run check
+npm run build
+```
+
+Start the local web app:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Android development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The current app is compatible with Android through a mobile browser. It does
+not contain React Native files, an Android Gradle project, or a native APK
+target. Android Studio, `adb`, and an emulator are therefore not part of this
+repository yet.
 
-## Learn More
+To test the responsive app from an Android device on the same network:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev:android
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Then open the host machine's LAN address on the device, for example
+`http://192.168.1.10:3000`. If native Android support is required later,
+create a separate Expo/React Native client rather than mixing native files into
+this Next.js app.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Dataset import
 
-## Deploy on Vercel
+The demo appointment dataset is stored in `data/demo-appointments.json`,
+imported by the home dashboard, and validated with Python:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run data:validate
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Python is used only for dataset validation; application code remains
+TypeScript.

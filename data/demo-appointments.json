@@ -1,0 +1,24 @@
+[
+  {
+    "id": "apt-001",
+    "date": "24",
+    "month": "FEB",
+    "title": "Routine check-up",
+    "patient": "Olivia Rhye",
+    "initials": "OR",
+    "detail": "Dr. Emily Carter · Primary care",
+    "time": "10:30 AM",
+    "color": "blue"
+  },
+  {
+    "id": "apt-002",
+    "date": "03",
+    "month": "MAR",
+    "title": "Dental cleaning",
+    "patient": "Phoenix Baker",
+    "initials": "PB",
+    "detail": "Dr. Michael Lee · Dentistry",
+    "time": "2:00 PM",
+    "color": "purple"
+  }
+]

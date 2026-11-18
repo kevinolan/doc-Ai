@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5f8f8;
+  --foreground: #20343b;
+  --muted: #eef3f3;
+  --muted-foreground: #829197;
+  --card: #ffffff;
+  --card-foreground: #20343b;
+  --border: #e7edef;
+  --ring: #0d8c7e;
+  --primary: #0d8c7e;
+  --primary-strong: #08786d;
+  --accent: #e8f5f2;
+  --accent-foreground: #087e72;
+  --accent-strong: #dff1ed;
+  --destructive: #dc4c4c;
+  --destructive-foreground: #ffffff;
+  --radius: 0.9rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+a,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer components {
+  .type-eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground;
+  }
+
+  .type-page-title {
+    @apply text-[30px] font-bold tracking-[-0.04em] text-foreground sm:text-[34px];
+  }
+
+  .type-page-description {
+    @apply mt-2 text-[15px] leading-6 text-muted-foreground;
+  }
+
+  .type-section-title {
+    @apply text-lg font-bold tracking-[-0.02em] text-foreground;
+  }
+}
