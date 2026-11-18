@@ -10,22 +10,30 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        border: "var(--border)",
+        ring: "var(--ring)",
         primary: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
+          DEFAULT: "var(--primary)",
+          strong: "var(--primary-strong)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          strong: "var(--accent-strong)",
+          foreground: "var(--accent-foreground)",
         },
         secondary: {
           50: "#faf5ff",
@@ -77,9 +85,13 @@ const config: Config = {
       },
     },
     borderRadius: {
+      card: "var(--radius)",
       lg: "var(--radius)",
       md: "calc(var(--radius) - 2px)",
       sm: "calc(var(--radius) - 4px)",
+    },
+    boxShadow: {
+      card: "0 1px 2px rgba(23, 32, 51, 0.02)",
     },
   },
   plugins: [],
