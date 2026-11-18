@@ -1,54 +1,29 @@
-# Carely
+# MediCare AI — React UI Prototype
 
-Carely is a Next.js outpatient appointment web app. It is currently a
-TypeScript web application, not a React Native project or a native Android
-project.
+A responsive React + Vite frontend for the Product UI Design & Usability Implementation practical project.
 
-## Development
+## Run locally
+1. Install Node.js (LTS).
+2. Extract this folder.
+3. Open a terminal in the project folder.
+4. Run `npm install`
+5. Run `npm run dev`
+6. Open the local URL printed by Vite (usually http://localhost:5173).
 
-Install dependencies and run the checks:
+## Included interactions
+- Sidebar navigation between Overview, Appointments, Patients, Doctors, AI Assistant and Reports.
+- Search filters appointment rows.
+- New appointment modal with required patient name validation.
+- Newly created appointments appear in the appointment list.
+- Demo AI assistant responds to booking and department questions.
+- Notification popover and responsive mobile navigation.
 
-```bash
-npm ci
-npm run data:validate
-npm run check
-npm run build
-```
+## Important scope and safety notes
+This is an academic frontend prototype using in-memory demonstration data. It does not connect to a hospital database, authenticate real users, send appointments, or process medical records. Data resets when the page is refreshed. The assistant is scripted demo guidance, not a clinical AI system. Do not enter real patient information.
 
-Start the local web app:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Android development
-
-The current app is compatible with Android through a mobile browser. It does
-not contain React Native files, an Android Gradle project, or a native APK
-target. Android Studio, `adb`, and an emulator are therefore not part of this
-repository yet.
-
-To test the responsive app from an Android device on the same network:
-
-```bash
-npm run dev:android
-```
-
-Then open the host machine's LAN address on the device, for example
-`http://192.168.1.10:3000`. If native Android support is required later,
-create a separate Expo/React Native client rather than mixing native files into
-this Next.js app.
-
-## Dataset import
-
-The demo appointment dataset is stored in `data/demo-appointments.json`,
-imported by the home dashboard, and validated with Python:
-
-```bash
-npm run data:validate
-```
-
-Python is used only for dataset validation; application code remains
-TypeScript.
+## Suggested next implementation stages
+1. Add secure backend and authentication with role-based access.
+2. Add persistent appointment, patient, doctor and department data.
+3. Add validated scheduling rules and conflict prevention.
+4. Add audit logs, privacy controls, backups and security testing.
+5. Conduct usability tests with representative users and document findings.
