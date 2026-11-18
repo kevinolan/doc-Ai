@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Activity, CalendarDays, Home, UserRound } from "lucide-react";
+import { BarChart3, CalendarDays, CircleHelp, Home, Stethoscope } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const items = [
-  { label: "Dashboard", href: "/", icon: Home },
-  { label: "Schedule", href: "/schedule", icon: CalendarDays },
-  { label: "Bookings", href: "/bookings", icon: CalendarDays },
-  { label: "Progress", href: "/progress", icon: Activity },
-  { label: "Profile", href: "/profile", icon: UserRound },
+  { label: "Overview", href: "/", icon: Home },
+  { label: "Appointments", href: "/bookings", icon: CalendarDays },
+  { label: "Doctors", href: "/schedule", icon: Stethoscope },
+  { label: "AI Assistant", href: "/assistant", icon: CircleHelp },
+  { label: "Reports", href: "/progress", icon: BarChart3 },
 ];
 
 export function BottomNav() {

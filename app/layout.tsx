@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Carely | Outpatient care made simple",
-  description: "Manage appointments and stay connected with your care team.",
+  title: "MediCare AI | Hospital management",
+  description: "Manage appointments and support hospital care operations.",
 };
 
 export default function RootLayout({

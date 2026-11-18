@@ -4,6 +4,8 @@
     "date": "24",
     "month": "FEB",
     "title": "Routine check-up",
+    "patient": "Olivia Rhye",
+    "initials": "OR",
     "detail": "Dr. Emily Carter · Primary care",
     "time": "10:30 AM",
     "color": "blue"
@@ -13,6 +15,8 @@
     "date": "03",
     "month": "MAR",
     "title": "Dental cleaning",
+    "patient": "Phoenix Baker",
+    "initials": "PB",
     "detail": "Dr. Michael Lee · Dentistry",
     "time": "2:00 PM",
     "color": "purple"

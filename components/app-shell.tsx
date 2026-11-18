@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import {
-  Bell,
-  Activity,
+  BarChart3,
   CalendarDays,
-  ChevronDown,
   CircleHelp,
   Home,
   LogOut,
   Menu,
-  Settings,
+  Building2,
+  Search,
+  Stethoscope,
   UserRound,
+  Users,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -19,10 +20,12 @@ import { usePathname } from "next/navigation";
 import { BottomNav } from "@/components/bottom-nav";
 
 const navItems = [
-  { label: "Dashboard", href: "/", icon: Home },
-  { label: "Schedule", href: "/schedule", icon: CalendarDays },
-  { label: "Bookings", href: "/bookings", icon: CalendarDays },
-  { label: "Progress", href: "/progress", icon: Activity },
+  { label: "Overview", href: "/", icon: Home },
+  { label: "Appointments", href: "/bookings", icon: CalendarDays },
+  { label: "Patients", href: "/profile", icon: Users },
+  { label: "Doctors", href: "/schedule", icon: Stethoscope },
+  { label: "AI Assistant", href: "/assistant", icon: CircleHelp },
+  { label: "Reports", href: "/progress", icon: BarChart3 },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -32,16 +35,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-background">
       <aside
-        className={`fixed inset-y-0 left-0 z-40 flex w-[248px] flex-col border-r border-[#e5eaf1] bg-white px-5 py-6 transition-transform lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 flex w-[245px] flex-col border-r border-border bg-white px-[15px] py-6 transition-transform lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="mb-12 flex items-center justify-between px-2">
+        <div className="mb-5 flex items-center justify-between px-2">
           <Link href="/" className="flex items-center gap-2.5" onClick={() => setSidebarOpen(false)}>
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-[#3268e9] text-lg font-bold text-white">
+            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#e0f4ef] text-xl font-bold text-primary">
               +
             </span>
-            <span className="text-[20px] font-bold tracking-[-0.03em] text-[#172033]">carely</span>
+            <span><span className="block text-[17px] font-bold tracking-[-0.04em] text-foreground">MediCare <b className="text-primary">AI</b></span><span className="mt-0.5 block text-[8px] font-bold tracking-[0.12em] text-muted-foreground">HEALTHCARE PLATFORM</span></span>
           </Link>
           <button
             className="rounded-lg p-2 text-[#8792a6] hover:bg-[#f4f6fa] lg:hidden"
@@ -52,6 +55,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </button>
         </div>
 
+        <div className="mb-6 rounded-xl border border-border bg-[#f6f9f9] p-3 text-xs text-foreground">
+          <div className="flex items-center gap-2"><Building2 size={14} className="text-primary" /><b>CityCare Hospital</b></div>
+          <p className="mt-1 pl-[22px] text-[9px] text-muted-foreground">Hospital workspace · Demo</p>
+        </div>
         <nav className="space-y-1">
           <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#a2adbd]">
             Main menu
@@ -65,40 +72,28 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 onClick={() => setSidebarOpen(false)}
                 className={`flex items-center gap-3 rounded-xl px-3 py-3 text-[14px] font-medium transition ${
                   pathname === item.href
-                    ? "bg-[#edf3ff] text-[#2e64df]"
-                    : "text-[#748096] hover:bg-[#f6f8fb] hover:text-[#172033]"
+                  ? "bg-accent text-accent-foreground"
+                  : "text-[#718187] hover:bg-[#f6f9f9] hover:text-foreground"
                 }`}
               >
-                <Icon size={18} strokeWidth=                {item.label === "Dashboard" ? 2.4 : 2} />
+                <Icon size={17} strokeWidth={pathname === item.href ? 2.4 : 2} />
                 {item.label}
               </Link>
             );
           })}
-          <Link
-            href="/profile"
-            onClick={() => setSidebarOpen(false)}
-            className={`flex items-center gap-3 rounded-xl px-3 py-3 text-[14px] font-medium transition hover:bg-[#f6f8fb] hover:text-[#172033] ${pathname === "/profile" ? "bg-[#edf3ff] text-[#2e64df]" : "text-[#748096]"}`}
-          >
-            <UserRound size={18} />
-            My profile
-          </Link>
         </nav>
 
         <div className="mt-auto space-y-1">
-          <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#a2adbd]">Support</p>
-          <Link href="/assistant" className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[14px] font-medium text-[#748096] hover:bg-[#f6f8fb]">
-            <CircleHelp size={18} />
-            Help center
+          <p className="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#a2adbd]">Account</p>
+          <Link href="/profile" className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[14px] font-medium text-[#718187] hover:bg-[#f6f9f9]">
+            <UserRound size={18} />
+            Nolan M.
           </Link>
-          <button className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-[14px] font-medium text-[#748096] hover:bg-[#f6f8fb]">
-            <Settings size={18} />
-            Settings
-          </button>
           <div className="mt-4 flex items-center gap-3 border-t border-[#edf0f4] px-2 pt-5">
-            <div className="grid h-9 w-9 place-items-center rounded-full bg-[#dce8ff] text-xs font-bold text-[#3268e9]">JD</div>
+            <div className="grid h-9 w-9 place-items-center rounded-full bg-accent text-xs font-bold text-accent-foreground">NM</div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[13px] font-semibold text-[#273249]">Jordan Davis</p>
-              <p className="truncate text-[11px] text-[#98a3b4]">Patient account</p>
+              <p className="truncate text-[13px] font-semibold text-foreground">Nolan M.</p>
+              <p className="truncate text-[11px] text-muted-foreground">Hospital workspace</p>
             </div>
             <button aria-label="Sign out" className="text-[#9ca7b8] hover:text-[#536178]">
               <LogOut size={16} />
@@ -115,8 +110,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         />
       )}
 
-      <div className="lg:pl-[248px]">
-        <header className="flex h-[76px] items-center justify-between border-b border-[#e5eaf1] bg-white px-5 sm:px-8 lg:px-11">
+      <div className="lg:pl-[245px]">
+        <header className="flex h-[67px] items-center justify-between border-b border-border bg-white px-5 sm:px-7 lg:px-[30px]">
           <button
             className="rounded-lg p-2 text-[#66748b] hover:bg-[#f4f6fa] lg:hidden"
             onClick={() => setSidebarOpen(true)}
@@ -124,17 +119,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           >
             <Menu size={21} />
           </button>
-          <div className="hidden text-sm font-medium text-[#8b96a8] lg:block">Thursday, February 20, 2025</div>
-          <div className="ml-auto flex items-center gap-4">
-            <button className="relative rounded-xl p-2.5 text-[#718096] hover:bg-[#f4f6fa]" aria-label="Notifications">
-              <Bell size={19} />
-              <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-[#3268e9]" />
-            </button>
-            <Link href="/profile" className="flex items-center gap-2.5 rounded-xl py-1.5 pl-1.5 pr-2 hover:bg-[#f5f7fa]">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-[#dce8ff] text-[10px] font-bold text-[#3268e9]">JD</span>
-              <span className="hidden text-[13px] font-semibold text-[#374258] sm:block">Jordan Davis</span>
-              <ChevronDown size={15} className="hidden text-[#94a0b1] sm:block" />
-            </Link>
+          <div className="hidden text-[11px] text-muted-foreground sm:block">CityCare Hospital <span className="mx-2">›</span> <b className="text-foreground">{pathname === "/" ? "Overview" : pathname.slice(1).replaceAll("-", " ").replace(/^\w/, (c) => c.toUpperCase())}</b></div>
+          <div className="ml-auto flex items-center gap-3">
+            <label className="relative hidden sm:block"><Search size={14} className="absolute left-3 top-2.5 text-muted-foreground" /><input placeholder="Search appointments…" className="h-9 w-[210px] rounded-lg border border-border pl-8 pr-3 text-[11px] outline-none focus:border-primary" /></label>
+            <Link href="/profile" aria-label="Open profile" className="grid h-8 w-8 place-items-center rounded-full bg-accent text-[10px] font-bold text-accent-foreground">NM</Link>
           </div>
         </header>
         <main className="px-5 py-8 pb-24 sm:px-8 lg:px-11 lg:pb-8">{children}</main>

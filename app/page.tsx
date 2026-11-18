@@ -1,92 +1,113 @@
 import Link from "next/link";
-import { ArrowRight, CalendarPlus, CircleHelp, Clock3, MapPin, MoreHorizontal, Stethoscope } from "lucide-react";
+import { ArrowRight, Plus, Stethoscope } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import appointments from "@/data/demo-appointments.json";
+
+const stats = [
+  { label: "Total appointments", value: "128", change: "12.8% vs last week", tone: "text-[#169778]" },
+  { label: "Registered patients", value: "2,840", change: "8.2% vs last week", tone: "text-[#169778]" },
+  { label: "Available doctors", value: "24", change: "3 doctors on leave", tone: "text-[#829197]" },
+  { label: "Pending requests", value: "9", change: "Needs review", tone: "text-[#829197]" },
+];
+
+const doctors = [
+  { initials: "JW", name: "Dr. James Wilson", specialty: "Cardiologist" },
+  { initials: "AN", name: "Dr. Amina Nsubuga", specialty: "Dermatologist" },
+  { initials: "RK", name: "Dr. Robert Kim", specialty: "Neurologist" },
+];
 
 export default function HomePage() {
   return (
     <AppShell>
-      <div className="mx-auto max-w-[1180px]">
-        <section className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+      <div className="mx-auto max-w-[1400px]">
+        <section className="mb-5 flex items-start justify-between gap-4">
           <div>
-            <p className="mb-2 text-sm font-medium text-[#8a96a9]">Thursday, February 20, 2025</p>
-            <h1 className="text-[30px] font-bold tracking-[-0.04em] text-[#172033] sm:text-[34px]">Good morning, Jordan</h1>
-            <p className="mt-2 text-[15px] text-[#7b879a]">Here&apos;s what&apos;s happening with your care today.</p>
+            <p className="text-[9px] font-extrabold uppercase tracking-[1.4px] text-primary">Tuesday, 18 November 2026</p>
+            <h1 className="mt-2 text-[25px] font-bold tracking-[-0.8px] text-foreground">Good morning, Nolan</h1>
+            <p className="mt-1 text-[11px] text-muted-foreground">Here&apos;s what&apos;s happening at your hospital today.</p>
           </div>
-          <Link href="/appointments" className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#3268e9] px-5 py-3 text-[13px] font-semibold text-white shadow-[0_8px_18px_rgba(50,104,233,0.2)] transition hover:bg-[#285bd6]">
-            <CalendarPlus size={17} />
-            Book an appointment
+          <Link href="/appointments" className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-3.5 text-[11px] font-bold text-white hover:bg-primary-strong">
+            <Plus size={14} /> <span className="hidden sm:inline">New appointment</span>
           </Link>
         </section>
 
-        <section className="mt-9 grid gap-5 lg:grid-cols-[1.55fr_1fr]">
-          <div className="relative overflow-hidden rounded-2xl bg-[#3268e9] p-7 text-white sm:p-8">
-            <div className="relative z-10 max-w-[390px]">
-              <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.15em] text-[#bfd1ff]">Your next appointment</p>
-              <h2 className="text-[25px] font-bold tracking-[-0.03em]">Routine check-up</h2>
-              <p className="mt-1 text-[14px] text-[#d9e3ff]">with Dr. Emily Carter</p>
-              <div className="mt-7 flex flex-wrap gap-5 text-[13px] text-[#eff3ff]">
-                <span className="flex items-center gap-2"><CalendarPlus size={16} /> Feb 24, 2025</span>
-                <span className="flex items-center gap-2"><Clock3 size={16} /> 10:30 AM</span>
-              </div>
-              <div className="mt-3 flex items-center gap-2 text-[13px] text-[#d9e3ff]"><MapPin size={16} /> Downtown Medical Center</div>
-              <Link href="/appointments/apt-001" className="mt-7 inline-flex items-center gap-2 rounded-lg bg-white/15 px-4 py-2.5 text-[12px] font-semibold text-white hover:bg-white/25">
-                View appointment <ArrowRight size={15} />
-              </Link>
-            </div>
-            <div className="absolute -bottom-20 -right-10 h-64 w-64 rounded-full border-[34px] border-white/10" />
-            <div className="absolute -right-24 -top-32 h-72 w-72 rounded-full border-[1px] border-white/10" />
+        <section className="relative mb-5 overflow-hidden rounded-[13px] bg-gradient-to-r from-[#0c7169] to-[#159987] p-6 text-white sm:p-7">
+          <div className="relative z-10 max-w-[520px]">
+            <p className="text-[9px] font-extrabold uppercase tracking-[1.4px] text-[#c8eee7]">Your care operations, simplified</p>
+            <h2 className="mt-3 text-[23px] font-bold leading-tight">Better coordination.<br />More time for care.</h2>
+            <p className="mt-3 max-w-[450px] text-[11px] leading-5 text-[#d2efeb]">Manage appointments, support your team and keep every patient journey moving.</p>
+            <Link href="/assistant" className="mt-5 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2.5 text-[11px] font-bold text-[#087c70]">
+              <Stethoscope size={14} /> Explore AI assistant
+            </Link>
           </div>
-          <div className="rounded-2xl border border-[#e5eaf1] bg-white p-7 sm:p-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#a0aaba]">Care summary</p>
-                <h2 className="mt-2 text-[20px] font-bold tracking-[-0.03em] text-[#172033]">Your health at a glance</h2>
-              </div>
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#edf3ff] text-[#3268e9]"><Stethoscope size={19} /></div>
-            </div>
-            <div className="mt-7 grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-[#f7f9fc] p-4"><p className="text-[24px] font-bold text-[#172033]">04</p><p className="mt-1 text-[12px] text-[#8792a5]">Appointments</p></div>
-              <div className="rounded-xl bg-[#f7f9fc] p-4"><p className="text-[24px] font-bold text-[#172033]">02</p><p className="mt-1 text-[12px] text-[#8792a5]">Care providers</p></div>
-            </div>
-            <Link href="/profile" className="mt-5 inline-flex items-center gap-1 text-[12px] font-semibold text-[#3268e9] hover:text-[#285bd6]">View health profile <ArrowRight size={14} /></Link>
+          <span className="absolute -bottom-10 right-4 rotate-[-12deg] text-[76px] text-white/20 sm:right-12">✚</span>
+        </section>
+
+        <section>
+          <div className="mb-3"><h2 className="text-[13px] font-bold text-foreground">Hospital overview</h2><p className="mt-1 text-[10px] text-muted-foreground">A snapshot of hospital activity</p></div>
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {stats.map((stat) => (
+              <Card key={stat.label} className="shadow-none">
+                <CardContent className="pt-4">
+                  <p className="text-[10px] text-muted-foreground">{stat.label}</p>
+                  <p className="mt-2 text-[24px] font-bold text-foreground">{stat.value}</p>
+                  <p className={`mt-1 text-[9px] ${stat.tone}`}>{stat.change}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
 
-        <section className="mt-8 grid gap-5 lg:grid-cols-[1.55fr_1fr]">
-          <div className="rounded-2xl border border-[#e5eaf1] bg-white p-6 sm:p-7">
-            <div className="flex items-center justify-between">
-              <div><h2 className="text-[18px] font-bold tracking-[-0.02em] text-[#172033]">Upcoming appointments</h2><p className="mt-1 text-[13px] text-[#8a96a9]">Keep track of your upcoming care.</p></div>
-              <Link href="/bookings" className="text-[12px] font-semibold text-[#3268e9] hover:text-[#285bd6]">View all</Link>
+        <section className="mt-5 grid gap-4 lg:grid-cols-[1.45fr_1fr]">
+          <Card className="shadow-none">
+            <CardHeader className="flex flex-row items-center justify-between">
+              <div><CardTitle>Upcoming appointments</CardTitle><p className="mt-1 text-[10px] text-muted-foreground">Today&apos;s patient visits</p></div>
+              <Link href="/bookings" className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-2 text-[10px] font-bold text-[#4e6268]">View all <ArrowRight size={12} /></Link>
+            </CardHeader>
+            <div className="overflow-x-auto px-4 pb-4">
+              <table className="w-full border-collapse whitespace-nowrap">
+                <thead><tr className="border-b border-border text-left text-[8px] font-bold uppercase tracking-[0.7px] text-muted-foreground"><th className="px-2 py-2">Patient</th><th className="px-2 py-2">Doctor / Dept.</th><th className="px-2 py-2">Date &amp; time</th><th className="px-2 py-2">Status</th></tr></thead>
+                <tbody>{appointments.map((appointment) => (
+                  <tr key={appointment.id} className="border-b border-[#eff2f3] text-[10px] last:border-0">
+                    <td className="px-2 py-3"><div className="flex items-center gap-2 font-bold"><span className="grid h-7 w-7 place-items-center rounded-full bg-[#e7f1ff] text-[9px] text-[#5279ac]">{appointment.initials}</span>{appointment.patient}</div></td>
+                    <td className="px-2 py-3">{appointment.detail}<br /><span className="text-muted-foreground">Care department</span></td>
+                    <td className="px-2 py-3">{appointment.month} {appointment.date}<br /><span className="text-muted-foreground">{appointment.time}</span></td>
+                    <td className="px-2 py-3"><span className="rounded-md bg-[#e4f6ed] px-2 py-1 text-[8px] font-extrabold text-[#258c68]">Confirmed</span></td>
+                  </tr>
+                ))}</tbody>
+              </table>
             </div>
-            <div className="mt-6 divide-y divide-[#edf0f4]">
-              {appointments.map((appointment) => (
-                <AppointmentRow key={appointment.id} {...appointment} />
-              ))}
-            </div>
-          </div>
-          <div className="rounded-2xl border border-[#e5eaf1] bg-white p-6 sm:p-7">
-            <div className="flex items-center justify-between"><div><h2 className="text-[18px] font-bold tracking-[-0.02em] text-[#172033]">Quick actions</h2><p className="mt-1 text-[13px] text-[#8a96a9]">Manage your care in a few clicks.</p></div></div>
-            <div className="mt-6 space-y-2.5">
-              <QuickAction icon={<CalendarPlus size={17} />} label="Book an appointment" href="/appointments" />
-              <QuickAction icon={<UserRoundIcon />} label="Update your profile" href="/profile" />
-              <QuickAction icon={<Clock3 size={17} />} label="View saved history" href="/history" />
-              <QuickAction icon={<CircleHelpIcon />} label="Get help with care" href="/assistant" />
-            </div>
-          </div>
+          </Card>
+
+          <Card className="shadow-none">
+            <CardHeader><CardTitle>Appointment activity</CardTitle><p className="mt-1 text-[10px] text-muted-foreground">Visits over the last 7 days</p></CardHeader>
+            <CardContent className="pt-0">
+              <div className="flex h-[145px] items-end gap-3 border-b border-border px-2 pt-3">
+                {[48,72,56,88,66,95,75].map((height, index) => <div key={index} className={`flex-1 rounded-t-md ${index % 2 ? "bg-primary" : "bg-[#bfe7df]"}`} style={{ height: `${height}%` }} />)}
+              </div>
+              <div className="mt-2 flex justify-around text-[9px] text-muted-foreground">{["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map((day) => <span key={day}>{day}</span>)}</div>
+            </CardContent>
+          </Card>
         </section>
+
+        <Card className="mt-4 shadow-none">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div><CardTitle>Our specialists</CardTitle><p className="mt-1 text-[10px] text-muted-foreground">Medical team directory</p></div>
+            <Link href="/schedule" className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-2 text-[10px] font-bold text-[#4e6268]">View doctors <ArrowRight size={12} /></Link>
+          </CardHeader>
+          <CardContent className="grid gap-3 pt-0 md:grid-cols-3">
+            {doctors.map((doctor) => (
+              <div key={doctor.name} className="rounded-lg border border-border p-4">
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-[#e7f1ff] text-[9px] font-bold text-[#5279ac]">{doctor.initials}</span>
+                <p className="mt-3 text-[11px] font-bold text-foreground">{doctor.name}</p>
+                <p className="mt-1 text-[9px] text-muted-foreground">{doctor.specialty}</p>
+                <p className="mt-3 text-[9px] text-[#189477]">● Available today</p>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
       </div>
     </AppShell>
   );
 }
-
-function AppointmentRow({ date, month, title, detail, time, color }: { date: string; month: string; title: string; detail: string; time: string; color: string }) {
-  return <div className="flex items-center gap-4 py-4 first:pt-0 last:pb-0"><div className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${color === "blue" ? "bg-[#edf3ff] text-[#3268e9]" : "bg-[#f3edff] text-[#8655d7]"}`}><div className="text-center"><p className="text-[15px] font-bold leading-4">{date}</p><p className="mt-0.5 text-[9px] font-bold tracking-wider">{month}</p></div></div><div className="min-w-0 flex-1"><p className="truncate text-[13px] font-semibold text-[#263149]">{title}</p><p className="mt-1 truncate text-[12px] text-[#8792a5]">{detail}</p></div><div className="hidden text-right sm:block"><p className="text-[12px] font-semibold text-[#526078]">{time}</p><p className="mt-1 text-[11px] text-[#9aa4b4]">Upcoming</p></div><button aria-label={`More options for ${title}`} className="text-[#a0aaba] hover:text-[#536178]"><MoreHorizontal size={18} /></button></div>;
-}
-
-function QuickAction({ icon, label, href }: { icon: React.ReactNode; label: string; href: string }) {
-  return <Link href={href} className="flex items-center gap-3 rounded-xl border border-[#edf0f4] px-3.5 py-3 text-[12px] font-semibold text-[#526078] transition hover:border-[#cbd9fa] hover:bg-[#f8faff] hover:text-[#3268e9]"><span className="text-[#3268e9]">{icon}</span>{label}<ArrowRight size={14} className="ml-auto text-[#abb4c1]" /></Link>;
-}
-
-function UserRoundIcon() { return <Stethoscope size={17} />; }
-function CircleHelpIcon() { return <CircleHelp size={17} />; }

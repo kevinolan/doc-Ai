@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 DATASET = Path(__file__).parent.parent / "data" / "demo-appointments.json"
-REQUIRED_FIELDS = {"id", "date", "month", "title", "detail", "time", "color"}
+REQUIRED_FIELDS = {"id", "date", "month", "title", "detail", "time", "color", "patient", "initials"}
 VALID_COLORS = {"blue", "purple"}
 
 
